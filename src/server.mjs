@@ -1,6 +1,6 @@
-import { createServer } from 'node:http';
-const server = createServer((req, res) => {
-  if (req.url === '/health') { res.writeHead(200, {'content-type':'application/json'}); res.end(JSON.stringify({status:'ok'})); return; }
-  res.writeHead(404); res.end();
+import { startServer } from './main.mjs';
+
+const port = Number(process.env.PORT) || 3000;
+startServer({ port }).then(() => {
+  console.log(`智能授信证据台已启动: http://localhost:${port}`);
 });
-server.listen(process.env.PORT || 3000);
